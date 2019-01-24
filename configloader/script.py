@@ -17,4 +17,4 @@ def main(input, output):
     '''
     config_template = yaml.safe_load(input)
     config = jsone.render(config_template, os.environ)
-    json.dump(config, output)
+    json.dump(config, output, indent=2, sort_keys=True)

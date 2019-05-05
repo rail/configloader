@@ -1,3 +1,4 @@
 click
-pyyaml
 json-e
+pyyaml
+slugid

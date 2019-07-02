@@ -19,8 +19,10 @@ def main(worker_id_prefix, input, output):
     '''
     config_template = yaml.safe_load(input)
     context = os.environ.copy()
-    # special case for workerId, it must be unique and max 22 characters long
+    # special case for workerId, it must be unique and max 38 characters long,
+    # according to
+    # https://docs.taskcluster.net/docs/reference/platform/queue/api#declareWorker
     context['WORKER_ID'] = worker_id_prefix + slugid.nice()
-    context['WORKER_ID'] = context['WORKER_ID'][:22]
+    context['WORKER_ID'] = context['WORKER_ID'][:38]
     config = jsone.render(config_template, context)
     json.dump(config, output, indent=2, sort_keys=True)
